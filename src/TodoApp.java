@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class TodoApp {
 		} else if (args[0].equals("-l")) {
 			listing();
 		} else if (args[0].equals("-a")) {
-			System.out.println("adding task");
+			addTask(args[1]);
 		} else if (args[0].equals("-r")) {
 			System.out.println("remove task");
 		} else if (args[0].equals("-c")) {
@@ -50,5 +52,18 @@ public class TodoApp {
 		}
 
 	}
+
+	public static void addTask(String taskFromUser) {
+
+		try {
+			Path taskFile = Paths.get("/home/salankiv/greenfox/salankiv-todo-app/assets/tasks.txt");
+			List<String> taskName = new ArrayList<>();
+			taskName.add(taskFromUser);
+			Files.write(taskFile, taskName, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }
