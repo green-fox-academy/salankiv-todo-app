@@ -21,15 +21,17 @@ public class TodoApp {
 			System.out.println("remove task");
 		} else if (args[0].equals("-c")) {
 			System.out.println("complete task");
-		} else System.out.println("Please try something else");
+		} else {
+			System.out.println("Unsupported argument");
+			greetings();
+		}
 
 	}
 
 	public static void greetings() {
-		Path head = Paths.get("/home/salankiv/greenfox/salankiv-todo-app/assets/head.txt");
-
 		try {
-			System.out.print("\033\143");
+			Path head = Paths.get("/home/salankiv/greenfox/salankiv-todo-app/assets/head.txt");
+	//clear screen		System.out.print("\033\143");
 			List<String> lines = Files.readAllLines(head);
 			for (String l : lines) {
 				System.out.println(l);
@@ -40,9 +42,8 @@ public class TodoApp {
 	}
 
 	public static void listing() {
-		Path taskFile = Paths.get("/home/salankiv/greenfox/salankiv-todo-app/assets/tasks.txt");
-
 		try {
+			Path taskFile = Paths.get("/home/salankiv/greenfox/salankiv-todo-app/assets/tasks.txt");
 			List<String> lines = Files.readAllLines(taskFile);
 			for (int i = 0; i < lines.size(); i++) {
 				System.out.println((i + 1) + ". " + lines.get(i));
